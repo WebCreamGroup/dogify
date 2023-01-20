@@ -8,11 +8,14 @@ import '../css/app.css'
 
 // noinspection JSUnusedGlobalSymbols,JSIgnoredPromiseFromCall
 createInertiaApp({
+    progress: {
+        color: 'hsl(var(--p))',
+    },
     resolve: name => {
         const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
         let page = pages[`./Pages/${name}.vue`]
 
-        if (['Landing', 'About'].includes(name)) {
+        if (['Landing', 'About', 'Blog'].includes(name)) {
             page.default.layout = PublicLayout
         }
 
