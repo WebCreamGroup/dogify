@@ -22,7 +22,7 @@
             </ul>
         </div>
         <div class="navbar-end">
-            <a class="btn">Sign Up</a>
+            <Link :href="route('auth.sign-in')" class="btn">Sign Up</Link>
         </div>
     </div>
 </template>

@@ -1,8 +1,6 @@
-// noinspection NpmUsedModulesInstalled
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
-
-import PublicLayout from './Layouts/Public.vue'
+import { createPinia } from 'pinia'
 
 import '../css/app.css'
 
@@ -11,19 +9,17 @@ createInertiaApp({
     progress: {
         color: 'hsl(var(--p))',
     },
-    resolve: name => {
-        const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
-        let page = pages[`./Pages/${name}.vue`]
+    resolve: async name => {
+        const pages = import.meta.glob('./Pages/**/*.vue')
 
-        if (['Landing', 'About', 'Blog'].includes(name)) {
-            page.default.layout = PublicLayout
-        }
-
-        return page
+        return pages[`./Pages/${name}.vue`]()
     },
     setup({ el, App, props, plugin }) {
         const VueApp = createApp({ render: () => h(App, props) })
 
-        VueApp.use(plugin).mount(el)
+        VueApp
+            .use(plugin)
+            .use(createPinia())
+            .mount(el)
     },
 })

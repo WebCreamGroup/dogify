@@ -15,8 +15,11 @@
 </template>
 
 <script>
+import Layout from '../Layouts/Public.vue'
+
 // noinspection JSUnusedGlobalSymbols
 export default {
     name: 'Pages/About',
+    layout: Layout,
 }
 </script>

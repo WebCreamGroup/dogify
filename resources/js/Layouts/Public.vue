@@ -11,8 +11,7 @@
 </template>
 
 <script>
-import LandingLayoutNavbar from '../Components/LandingLayoutNavbar.vue'
-import LayoutFooter from '../Components/LayoutFooter.vue'
+import { LandingLayoutNavbar, LayoutFooter } from '../Components'
 
 export default {
     name: 'Layouts/Public',
