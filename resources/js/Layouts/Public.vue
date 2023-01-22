@@ -14,7 +14,6 @@
 import { LayoutLandingNavbar, LayoutFooter } from '../Components'
 
 export default {
-    name: 'Layouts/Public',
     components: {
         LandingLayoutNavbar: LayoutLandingNavbar,
         LayoutFooter,

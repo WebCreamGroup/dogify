@@ -10,7 +10,6 @@
 import { usePage } from '@inertiajs/vue3'
 
 export default {
-    name: 'Components/LayoutFooter',
     computed: {
         config: () => usePage().props.config,
         footerYear: () => new Date().getFullYear(),

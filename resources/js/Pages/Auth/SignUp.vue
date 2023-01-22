@@ -69,7 +69,6 @@ import { promiseTimeout } from '@vueuse/core'
 
 // noinspection JSUnusedGlobalSymbols
 export default {
-    name: 'Pages/Auth/SignUp',
     layout: Layout,
     components: { Link },
     data: () => ({

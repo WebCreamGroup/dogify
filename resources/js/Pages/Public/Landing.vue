@@ -15,7 +15,6 @@ import Layout from '../../Layouts/Public.vue'
 
 // noinspection JSUnusedGlobalSymbols
 export default {
-    name: 'Pages/Public/Landing',
     layout: Layout,
 }
 </script>

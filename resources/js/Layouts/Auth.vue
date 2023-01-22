@@ -36,7 +36,6 @@ export const useStore = defineStore('Layouts/Auth', {
 })
 
 export default {
-    name: 'Layouts/Auth',
     components: { Logo, LayoutFooter },
     computed: {
         store: () => useStore(),

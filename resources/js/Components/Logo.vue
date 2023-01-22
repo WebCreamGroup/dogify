@@ -6,7 +6,6 @@
 import { usePage, Link } from '@inertiajs/vue3'
 
 export default {
-    name: 'Components/Logo',
     components: { Link },
     computed: {
         route: () => window.route,
