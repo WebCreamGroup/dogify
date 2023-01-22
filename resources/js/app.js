@@ -12,7 +12,21 @@ createInertiaApp({
     resolve: async name => {
         const pages = import.meta.glob('./Pages/**/*.vue')
 
-        return pages[`./Pages/${name}.vue`]()
+        const page = await pages[`./Pages/${name}.vue`]()
+
+        if (name.startsWith('Public/') || name.startsWith('Blog/')) {
+            page.default.layout = (await import('./Layouts/Public.vue')).default
+        }
+
+        if (name.startsWith('Auth/')) {
+            page.default.layout = (await import('./Layouts/Auth.vue')).default
+        }
+
+        if (name.startsWith('App/')) {
+            page.default.layout = (await import('./Layouts/App.vue')).default
+        }
+
+        return page
     },
     setup({ el, App, props, plugin }) {
         const VueApp = createApp({ render: () => h(App, props) })

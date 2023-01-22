@@ -63,13 +63,12 @@
 </template>
 
 <script>
-import { useStore, default as Layout } from '../../Layouts/Auth.vue'
+import { useStore } from '../../Layouts/Auth.vue'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
 
 // noinspection JSUnusedGlobalSymbols
 export default {
-    layout: Layout,
     components: { Link },
     data: () => ({
         form: useForm({ email: '', first_name: '', last_name: '', password: '', password_confirmation: '' }),

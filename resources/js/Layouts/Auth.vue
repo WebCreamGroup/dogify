@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { Logo, LayoutFooter } from '../Components'
+import { Logo, Layout } from '../Components'
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('Layouts/Auth', {
@@ -36,7 +36,7 @@ export const useStore = defineStore('Layouts/Auth', {
 })
 
 export default {
-    components: { Logo, LayoutFooter },
+    components: { Logo, LayoutFooter: Layout.Footer },
     computed: {
         store: () => useStore(),
     },

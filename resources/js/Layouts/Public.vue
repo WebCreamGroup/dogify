@@ -1,22 +1,22 @@
 <template>
     <div class="container mx-auto p-5 space-y-16 flex flex-col h-screen">
-        <LandingLayoutNavbar/>
+        <LandingNavbar/>
 
         <div class="grow">
             <slot/>
         </div>
 
-        <LayoutFooter/>
+        <Footer/>
     </div>
 </template>
 
 <script>
-import { LayoutLandingNavbar, LayoutFooter } from '../Components'
+import { LandingNavbar, Footer } from '../Components/Layout'
 
 export default {
     components: {
-        LandingLayoutNavbar: LayoutLandingNavbar,
-        LayoutFooter,
+        LandingNavbar,
+        Footer,
     },
 }
 </script>

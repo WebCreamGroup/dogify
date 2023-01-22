@@ -54,12 +54,3 @@
         </div>
     </section>
 </template>
-
-<script>
-import Layout from '../../Layouts/Public.vue'
-
-// noinspection JSUnusedGlobalSymbols
-export default {
-    layout: Layout,
-}
-</script>
