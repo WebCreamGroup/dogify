@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import { LandingLayoutNavbar, LayoutFooter } from '../Components'
+import { LayoutLandingNavbar, LayoutFooter } from '../Components'
 
 export default {
     name: 'Layouts/Public',
     components: {
-        LandingLayoutNavbar,
+        LandingLayoutNavbar: LayoutLandingNavbar,
         LayoutFooter,
     },
 }

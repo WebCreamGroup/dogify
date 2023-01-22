@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 class BlogController extends Controller
 {
-    public function blog()
+    public function postsList()
     {
-        return inertia('Blog');
+        return inertia('Blog/PostsList');
     }
 }
