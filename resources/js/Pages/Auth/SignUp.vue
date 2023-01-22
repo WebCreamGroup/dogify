@@ -11,6 +11,7 @@
 
             <div class="space-y-3">
                 <input
+                    ref="autofocus"
                     type="email"
                     required
                     placeholder="Your email address"
@@ -53,6 +54,7 @@
                 />
             </div>
 
+            <!--suppress JSUnresolvedVariable -->
             <button :class="{ 'loading': form.processing }" class="btn btn-block btn-primary">Sign Up</button>
         </form>
 
@@ -64,6 +66,7 @@
 
 <script>
 import { useStore } from '../../Layouts/Auth.vue'
+import { useToastStore, TYPE } from '../../Stores/toast'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
 
@@ -78,12 +81,16 @@ export default {
     },
     mounted() {
         useStore().setTitle('Sign Up')
+        this.$refs.autofocus.focus()
     },
     methods: {
         async submit() {
             this.form.processing = true
             await promiseTimeout(250)
-            this.form.post('/auth/register')
+
+            this.form.post('/auth/register', {
+                onSuccess: () => useToastStore().push(`Welcome a board ${this.form.first_name}!`, TYPE.SUCCESS),
+            })
         },
     },
 }

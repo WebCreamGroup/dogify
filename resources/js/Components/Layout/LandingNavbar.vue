@@ -7,34 +7,48 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
                     </svg>
                 </label>
-                <ul tabindex="0"
-                    class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+
+                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><Link :href="route('public.about')">About</Link></li>
                     <li><Link :href="route('blog.posts-list')">Blog</Link></li>
                 </ul>
             </div>
+
             <Link :href="route('public.landing')" class="btn btn-ghost normal-case text-xl">{{ config.app.name }}</Link>
         </div>
+
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
                 <li><Link :href="route('public.about')">About</Link></li>
                 <li><Link :href="route('blog.posts-list')">Blog</Link></li>
             </ul>
         </div>
+
         <div class="navbar-end">
-            <Link :href="route('auth.sign-in')" class="btn">Sign Up</Link>
+            <Link v-if="auth.user" :href="route('app.dashboard')" class="btn gap-2">
+                <span v-text="auth.user.first_name"/>
+
+                <div class="avatar">
+                    <div class="w-8 rounded-full">
+                        <Avatar/>
+                    </div>
+                </div>
+            </Link>
+
+            <Link v-else :href="route('auth.sign-in')" class="btn">Sign In</Link>
         </div>
     </div>
 </template>
 
 <script>
-import { usePage } from '@inertiajs/vue3'
-import { Link } from '@inertiajs/vue3'
+import { usePage, Link } from '@inertiajs/vue3'
+import Avatar from '../Avatar.vue'
 
 export default {
-    components: { Link },
+    components: { Link, Avatar },
     computed: {
         config: () => usePage().props.config,
+        auth: () => usePage().props.auth,
         route: () => window.route,
     },
 }

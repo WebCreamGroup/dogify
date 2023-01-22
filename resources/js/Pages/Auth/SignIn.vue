@@ -12,6 +12,7 @@
 
             <div class="space-y-3">
                 <input
+                    ref="autofocus"
                     type="email"
                     required
                     placeholder="Your email address"
@@ -71,6 +72,7 @@
 
 <script>
 import { useStore } from '../../Layouts/Auth.vue'
+import { useToastStore, TYPE } from '../../Stores/toast'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
 
@@ -85,12 +87,16 @@ export default {
     },
     mounted() {
         useStore().setTitle('Sign In')
+        this.$refs.autofocus.focus()
     },
     methods: {
         async submit() {
             this.form.processing = true
             await promiseTimeout(250)
-            this.form.post('/auth/login')
+
+            this.form.post('/auth/login', {
+                onSuccess: () => useToastStore().push('Successfully signed in!', TYPE.SUCCESS),
+            })
         },
     },
 }

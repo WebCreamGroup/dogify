@@ -18,13 +18,14 @@
             </div>
         </div>
 
-        <LayoutFooter/>
+        <Footer/>
     </div>
 </template>
 
 <script>
-import { Logo, Layout } from '../Components'
 import { defineStore } from 'pinia'
+import Logo from '../Components/Logo.vue'
+import Footer from '../Components/Layout/Footer.vue'
 
 export const useStore = defineStore('Layouts/Auth', {
     state: () => ({ title: '' }),
@@ -36,7 +37,7 @@ export const useStore = defineStore('Layouts/Auth', {
 })
 
 export default {
-    components: { Logo, LayoutFooter: Layout.Footer },
+    components: { Logo, Footer },
     computed: {
         store: () => useStore(),
     },

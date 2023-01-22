@@ -24,4 +24,5 @@ Route::group([
     'middleware' => 'auth',
 ], static function () {
     Route::get('/', Controllers\AppDashboardController::class)->name('app.dashboard');
+    Route::get('/profile', Controllers\AppProfileController::class)->name('app.profile');
 });
