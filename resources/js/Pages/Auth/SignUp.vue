@@ -1,5 +1,7 @@
 <template>
     <div class="space-y-5">
+        <h2 class="card-title">Sign Up</h2>
+
         <form @submit.prevent="submit" class="space-y-5">
             <div v-if="Object.keys(form.errors).length" class="alert alert-error shadow-lg">
                 <div class="items-start">
@@ -65,7 +67,6 @@
 </template>
 
 <script>
-import { useStore } from '../../Layouts/Auth.vue'
 import { useToastStore, TYPE } from '../../Stores/toast'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
@@ -80,7 +81,6 @@ export default {
         route: () => window.route,
     },
     mounted() {
-        useStore().setTitle('Sign Up')
         this.$refs.autofocus.focus()
     },
     methods: {
