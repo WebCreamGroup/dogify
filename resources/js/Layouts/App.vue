@@ -2,7 +2,7 @@
     <div class="container mx-auto p-5 space-y-16 flex flex-col h-screen">
         <AppNavbar/>
 
-        <div class="grow">
+        <div class="grow py-10">
             <slot/>
         </div>
 
