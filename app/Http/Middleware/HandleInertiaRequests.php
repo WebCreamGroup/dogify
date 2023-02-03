@@ -11,7 +11,8 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'config.app.name' => config('app.name'),
-            'auth.user' => $request->user()?->only(['email', 'first_name', 'last_name', 'email_verified_at']),
+            'auth.user' => fn() => $request->user()?->only(['email', 'first_name', 'last_name', 'email_verified_at']),
+            'flash.toast' => fn() => session()->get('toast'),
         ]);
     }
 }

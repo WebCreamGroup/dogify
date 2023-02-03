@@ -7,14 +7,24 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
 import { useToastStore } from '../../Stores/toast'
 import Alert from '../Alert.vue'
+import { usePage } from '@inertiajs/vue3'
 
 export default {
     components: { Alert },
     computed: {
-        ...mapState(useToastStore, ['collection']),
+        collection: () => {
+            const collection = useToastStore().collection
+
+            // noinspection JSUnresolvedVariable
+            const flashToast = usePage().props.flash.toast
+            if (flashToast) {
+                useToastStore().push(flashToast.content, flashToast.type)
+            }
+
+            return collection
+        },
     },
 }
 </script>
