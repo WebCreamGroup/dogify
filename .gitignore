@@ -19,3 +19,11 @@ yarn-error.log
 
 # Custom
 sail
+
+# Common resources
+/resources/common/node_modules
+/public/hot-common
+
+# App resources
+/resources/app/node_modules
+/public/hot-app

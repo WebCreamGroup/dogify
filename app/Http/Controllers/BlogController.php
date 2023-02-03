@@ -6,6 +6,6 @@ class BlogController extends Controller
 {
     public function postsList()
     {
-        return inertia('Blog/PostsList');
+        return inertia('blog/PostsList');
     }
 }

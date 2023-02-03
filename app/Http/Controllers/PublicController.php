@@ -6,11 +6,11 @@ class PublicController extends Controller
 {
     public function landing()
     {
-        return inertia('Public/Landing');
+        return inertia('public/Landing');
     }
 
     public function about()
     {
-        return inertia('Public/About');
+        return inertia('public/About');
     }
 }

@@ -6,11 +6,11 @@ class AuthController extends Controller
 {
     public function signIn()
     {
-        return inertia('Auth/SignIn');
+        return inertia('auth/SignIn');
     }
 
     public function signUp()
     {
-        return inertia('Auth/SignUp');
+        return inertia('auth/SignUp');
     }
 }
