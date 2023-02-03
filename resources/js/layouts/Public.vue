@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import LandingNavbar from '../Components/Layout/LandingNavbar.vue'
-import Footer from '../Components/Layout/Footer.vue'
+import LandingNavbar from '../components/layout/LandingNavbar.vue'
+import Footer from '../components/layout/Footer.vue'
 
 export default {
     components: { LandingNavbar, Footer },

@@ -6,6 +6,6 @@ class AppDashboardController extends Controller
 {
     public function __invoke()
     {
-        return inertia('App/Dashboard');
+        return inertia('app/Dashboard');
     }
 }

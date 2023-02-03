@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 import { defineStore } from 'pinia'
-import { TYPE } from '../Components/Alert.vue'
+import { TYPE } from '../components/Alert.vue'
 
 export { TYPE }
 

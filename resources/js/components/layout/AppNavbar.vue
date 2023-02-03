@@ -59,7 +59,7 @@
 
 <script>
 import { usePage, router, Link } from '@inertiajs/vue3'
-import { useToastStore, TYPE } from '../../Stores/toast'
+import { useToastStore, TYPE } from '../../stores/toast'
 import Avatar from '../Avatar.vue'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 

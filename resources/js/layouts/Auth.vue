@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import Logo from '../Components/Logo.vue'
-import Footer from '../Components/Layout/Footer.vue'
+import Logo from '../components/Logo.vue'
+import Footer from '../components/layout/Footer.vue'
 
 export default {
     components: { Logo, Footer },

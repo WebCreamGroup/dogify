@@ -1,6 +1,6 @@
 <script setup>
 import { shallowRef, getCurrentInstance } from 'vue'
-import Toast from '../Components/Layout/Toast.vue'
+import Toast from '../components/layout/Toast.vue'
 
 const baseLayout = shallowRef(getCurrentInstance().type)
 </script>

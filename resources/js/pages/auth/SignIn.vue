@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { useToastStore, TYPE } from '../../Stores/toast'
+import { useToastStore, TYPE } from '../../stores/toast'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
 

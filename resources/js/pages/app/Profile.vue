@@ -101,7 +101,7 @@
 
 <script>
 import { usePage, useForm } from '@inertiajs/vue3'
-import FormErrors from '../../Components/FormErrors.vue'
+import FormErrors from '../../components/FormErrors.vue'
 
 export default {
     data: () => ({

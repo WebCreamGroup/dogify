@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useToastStore } from '../../Stores/toast'
+import { useToastStore } from '../../stores/toast'
 import Alert from '../Alert.vue'
 import { usePage } from '@inertiajs/vue3'
 

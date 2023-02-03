@@ -12,7 +12,7 @@ class AppProfileController extends Controller
 {
     public function view()
     {
-        return inertia('App/Profile');
+        return inertia('app/Profile');
     }
 
     public function saveUserData(Request $request): void

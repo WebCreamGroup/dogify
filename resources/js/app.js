@@ -10,23 +10,23 @@ createInertiaApp({
         color: 'hsl(var(--p))',
     },
     resolve: async name => {
-        const pages = import.meta.glob('./Pages/**/*.vue')
-        const page = await pages[`./Pages/${name}.vue`]()
+        const pages = import.meta.glob('./pages/**/*.vue')
+        const page = await pages[`./pages/${name}.vue`]()
         let layout = null
 
-        if (name.startsWith('Public/') || name.startsWith('Blog/')) {
-            layout = (await import('./Layouts/Public.vue')).default
+        if (name.startsWith('public/') || name.startsWith('blog/')) {
+            layout = (await import('./layouts/Public.vue')).default
         }
 
-        if (name.startsWith('Auth/')) {
-            layout = (await import('./Layouts/Auth.vue')).default
+        if (name.startsWith('auth/')) {
+            layout = (await import('./layouts/Auth.vue')).default
         }
 
-        if (name.startsWith('App/')) {
-            layout = (await import('./Layouts/App.vue')).default
+        if (name.startsWith('app/')) {
+            layout = (await import('./layouts/App.vue')).default
         }
 
-        page.default.layout = (await import('./Layouts/Base.vue')).default
+        page.default.layout = (await import('./layouts/Base.vue')).default
         page.default.layout.layout = layout
 
         return page
