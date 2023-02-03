@@ -43,7 +43,7 @@
 
                 <MenuItems as="ul" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <MenuItem @click="close" as="li">
-                        <Link :href="route('app.profile')" class="justify-between">Profile</Link>
+                        <Link :href="route('app.profile-view')" class="justify-between">Profile</Link>
                     </MenuItem>
                     <MenuItem as="li"><a>Settings</a></MenuItem>
                     <MenuItem as="li">

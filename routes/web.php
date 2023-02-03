@@ -24,5 +24,7 @@ Route::group([
     'middleware' => 'auth',
 ], static function () {
     Route::get('/', Controllers\AppDashboardController::class)->name('app.dashboard');
-    Route::get('/profile', Controllers\AppProfileController::class)->name('app.profile');
+    Route::get('/profile', [Controllers\AppProfileController::class, 'view'])->name('app.profile-view');
+    Route::post('/profile/data', [Controllers\AppProfileController::class, 'saveUserData'])->name('app.profile-save-userdata');
+    Route::post('/profile/password', [Controllers\AppProfileController::class, 'updateUserPassword'])->name('app.profile-update-password');
 });
