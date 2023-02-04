@@ -31,7 +31,7 @@
                     />
 
                     <span class="label justify-end">
-                        <Link :href="route('auth.sign-in')" class="link link-hover opacity-70 label-text-alt">Forgot your password?</Link>
+                        <Link :href="$route('auth.sign-in')" class="link link-hover opacity-70 label-text-alt">Forgot your password?</Link>
                     </span>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         </form>
 
         <div class="text-center">
-            <Link :href="route('auth.sign-up')" class="link link-hover opacity-70">You don't have an account?</Link>
+            <Link :href="$route('auth.sign-up')" class="link link-hover opacity-70">You don't have an account?</Link>
         </div>
 
         <div class="divider">OR</div>
@@ -75,16 +75,15 @@
 import { useToastStore, TYPE } from '../../stores/toast'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
+import { useRouteMixin } from '../../mixins/route'
 
 // noinspection JSUnusedGlobalSymbols
 export default {
+    mixins: [useRouteMixin],
     components: { Link },
     data: () => ({
         form: useForm({ email: '', password: '' }),
     }),
-    computed: {
-        route: () => window.route,
-    },
     mounted() {
         this.$refs.autofocus.focus()
     },

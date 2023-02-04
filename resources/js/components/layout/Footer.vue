@@ -1,17 +1,17 @@
 <template>
     <footer class="footer footer-center p-4 text-base-content">
         <div>
-            <p>&copy; {{ footerYear }} {{ config.app.name }}</p>
+            <p>&copy; {{ footerYear }} {{ $page.props.config.app.name }}</p>
         </div>
     </footer>
 </template>
 
 <script>
-import { usePage } from '@inertiajs/vue3'
+import { usePageMixin } from '../../mixins/page'
 
 export default {
+    mixins: [usePageMixin],
     computed: {
-        config: () => usePage().props.config,
         footerYear: () => new Date().getFullYear(),
     },
 }

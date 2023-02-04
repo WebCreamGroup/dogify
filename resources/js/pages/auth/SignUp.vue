@@ -61,7 +61,7 @@
         </form>
 
         <div class="text-center">
-            <Link :href="route('auth.sign-in')" class="link link-hover opacity-70">Already have an account?</Link>
+            <Link :href="$route('auth.sign-in')" class="link link-hover opacity-70">Already have an account?</Link>
         </div>
     </div>
 </template>
@@ -70,16 +70,15 @@
 import { useToastStore, TYPE } from '../../stores/toast'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
+import { useRouteMixin } from '../../mixins/route'
 
 // noinspection JSUnusedGlobalSymbols
 export default {
+    mixins: [useRouteMixin],
     components: { Link },
     data: () => ({
         form: useForm({ email: '', first_name: '', last_name: '', password: '', password_confirmation: '' }),
     }),
-    computed: {
-        route: () => window.route,
-    },
     mounted() {
         this.$refs.autofocus.focus()
     },

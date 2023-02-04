@@ -65,17 +65,15 @@
                 </div>
             </div>
 
-            <h1>{{ auth.user.email }}</h1>
+            <h1>{{ $page.props.auth.user.email }}</h1>
         </div>
     </div>
 </template>
 
 <script>
-import { usePage } from '@inertiajs/vue3'
+import { usePageMixin } from '../../mixins/page'
 
 export default {
-    computed: {
-        auth: () => usePage().props.auth,
-    }
+    mixins: [usePageMixin],
 }
 </script>

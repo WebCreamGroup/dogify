@@ -7,13 +7,17 @@
     "require": {
         "php": "^8.0.2",
         "bensampo/laravel-enum": "^6.3",
+        "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/fortify": "^1.16",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "mcamara/laravel-localization": "^1.7",
         "spatie/laravel-data": "^3.0",
+        "spatie/laravel-translatable": "^6.3",
+        "symfony/intl": "^6.2",
         "tightenco/ziggy": "^1.5"
     },
     "require-dev": {

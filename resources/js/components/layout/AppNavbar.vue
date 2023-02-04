@@ -9,16 +9,16 @@
                 </label>
 
                 <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><Link :href="route('app.dashboard')">Dashboard</Link></li>
+                    <li><Link :href="$route('app.dashboard')">Dashboard</Link></li>
                 </ul>
             </div>
 
-            <Link :href="route('public.landing')" class="btn btn-ghost normal-case text-xl">{{ config.app.name }}</Link>
+            <Link :href="$route('public.landing')" class="btn btn-ghost normal-case text-xl">{{ $page.props.config.app.name }}</Link>
         </div>
 
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><Link :href="route('app.dashboard')">Dashboard</Link></li>
+                <li><Link :href="$route('app.dashboard')">Dashboard</Link></li>
             </ul>
         </div>
 
@@ -32,7 +32,7 @@
 
             <Menu as="div" v-slot="{ close }" class="dropdown dropdown-end">
                 <MenuButton class="btn gap-2 btn-ghost">
-                    <span v-text="auth.user.first_name"/>
+                    <span v-text="$page.props.auth.user.first_name"/>
 
                     <div class="avatar">
                         <div class="w-8 rounded-full">
@@ -43,7 +43,7 @@
 
                 <MenuItems as="ul" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <MenuItem @click="close" as="li">
-                        <Link :href="route('app.profile-view')" class="justify-between">Profile</Link>
+                        <Link :href="$route('app.profile-view')" class="justify-between">Profile</Link>
                     </MenuItem>
                     <MenuItem as="li"><a>Settings</a></MenuItem>
                     <MenuItem as="li">
@@ -58,18 +58,16 @@
 </template>
 
 <script>
-import { usePage, router, Link } from '@inertiajs/vue3'
+import { router, Link } from '@inertiajs/vue3'
 import { useToastStore, TYPE } from '../../stores/toast'
 import Avatar from '../Avatar.vue'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { usePageMixin } from '../../mixins/page'
+import { useRouteMixin } from '../../mixins/route'
 
 export default {
+    mixins: [usePageMixin, useRouteMixin],
     components: { Link, Avatar, Menu, MenuButton, MenuItems, MenuItem },
-    computed: {
-        config: () => usePage().props.config,
-        auth: () => usePage().props.auth,
-        route: () => window.route,
-    },
     methods: {
         signOut() {
             router.post('/auth/logout', null, {
