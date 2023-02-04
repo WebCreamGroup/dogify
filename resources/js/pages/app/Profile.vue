@@ -8,7 +8,7 @@
             </div>
 
             <div class="card bg-base-100 shadow-xl">
-                <form @submit.prevent="userDataForm.post(route('app.profile-save-userdata'))">
+                <form @submit.prevent="userDataForm.post($route('app.profile-save-userdata'))">
                     <div class="card-body space-y-5">
                         <div class="space-y-5">
                             <div class="form-control">
@@ -40,7 +40,7 @@
                                     </span>
                                 </label>
 
-                                <input :value="email" id="email" type="email" name="email" placeholder="Your email" class="input input-bordered" disabled/>
+                                <input :value="$page.props.auth.user.email" id="email" type="email" name="email" placeholder="Your email" class="input input-bordered" disabled/>
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@
             </div>
 
             <div class="card bg-base-100 shadow-xl">
-                <form @submit.prevent="passwordForm.post(route('app.profile-update-password'), { onSuccess: () => passwordForm.reset() })">
+                <form @submit.prevent="passwordForm.post($route('app.profile-update-password'), { onSuccess: () => passwordForm.reset() })">
                     <div class="card-body space-y-5">
                         <div class="space-y-5">
                             <div class="form-control">
@@ -102,16 +102,15 @@
 <script>
 import { usePage, useForm } from '@inertiajs/vue3'
 import FormErrors from '../../components/FormErrors.vue'
+import { usePageMixin } from '../../mixins/page'
+import { useRouteMixin } from '../../mixins/route'
 
 export default {
+    mixins: [usePageMixin, useRouteMixin],
     data: () => ({
         userDataForm: useForm(usePage().props.auth.user),
         passwordForm: useForm({ password: '', password_confirmation: '' }),
     }),
     components: { FormErrors },
-    computed: {
-        route: () => window.route,
-        email: () => usePage().props.auth.user.email,
-    },
 }
 </script>

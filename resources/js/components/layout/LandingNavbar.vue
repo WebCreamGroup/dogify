@@ -9,24 +9,42 @@
                 </label>
 
                 <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><Link :href="route('public.about')">About</Link></li>
-                    <li><Link :href="route('blog.posts-list')">Blog</Link></li>
+                    <li><Link :href="$route('public.about')">About</Link></li>
+                    <li><Link :href="$route('blog.posts-list')">Blog</Link></li>
                 </ul>
             </div>
 
-            <Link :href="route('public.landing')" class="btn btn-ghost normal-case text-xl">{{ config.app.name }}</Link>
+            <Link :href="$route('public.landing')" class="btn btn-ghost normal-case text-xl">{{ $page.props.config.app.name }}</Link>
         </div>
 
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><Link :href="route('public.about')">About</Link></li>
-                <li><Link :href="route('blog.posts-list')">Blog</Link></li>
+                <li><Link :href="$route('public.about')">About</Link></li>
+                <li><Link :href="$route('blog.posts-list')">Blog</Link></li>
             </ul>
         </div>
 
         <div class="navbar-end">
-            <Link v-if="auth.user" :href="route('app.dashboard')" class="btn gap-2">
-                <span v-text="auth.user.first_name"/>
+            <Menu as="div" v-slot="{ close }" class="dropdown dropdown-end">
+                <MenuButton class="btn btn-ghost btn-circle avatar shadow-xl p-1">
+                    <div class="w-full h-full rounded-full">
+                        <!--suppress JSUnresolvedVariable -->
+                        <Component :is="`Flag${$page.props.i18n.currentLocale.toUpperCase()}`" class="h-full"/>
+                    </div>
+                </MenuButton>
+
+                <MenuItems as="ul" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <MenuItem v-for="({ native, url }, code) in $page.props.i18n.locales" as="li" :key="code">
+                        <Link @click="close" :href="url" class="flex items-center space-x-5">
+                            <Component :is="`Flag${code.toUpperCase()}`" class="w-h h-5"/>
+                            <span v-text="native"/>
+                        </Link>
+                    </MenuItem>
+                </MenuItems>
+            </Menu>
+
+            <Link v-if="$page.props.auth.user" :href="$route('app.dashboard')" class="btn gap-2">
+                <span v-text="$page.props.auth.user.first_name"/>
 
                 <div class="avatar">
                     <div class="w-8 rounded-full">
@@ -35,21 +53,21 @@
                 </div>
             </Link>
 
-            <Link v-else :href="route('auth.sign-in')" class="btn">Sign In</Link>
+            <Link v-else :href="$route('auth.sign-in')" class="btn">Sign In</Link>
         </div>
     </div>
 </template>
 
 <script>
-import { usePage, Link } from '@inertiajs/vue3'
+import { Link } from '@inertiajs/vue3'
 import Avatar from '../Avatar.vue'
+import { FlagRU, FlagEN, FlagLV } from '../flags'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { usePageMixin } from '../../mixins/page'
+import { useRouteMixin } from '../../mixins/route'
 
 export default {
-    components: { Link, Avatar },
-    computed: {
-        config: () => usePage().props.config,
-        auth: () => usePage().props.auth,
-        route: () => window.route,
-    },
+    mixins: [usePageMixin, useRouteMixin],
+    components: { Link, Avatar, FlagRU, FlagEN, FlagLV, Menu, MenuButton, MenuItems, MenuItem },
 }
 </script>
