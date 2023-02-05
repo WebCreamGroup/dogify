@@ -13,7 +13,7 @@ class HandleInertiaRequests extends Middleware
     {
         $i18nLocales = collect(LaravelLocalization::getLocalesOrder())
             ->map(function (array $locale, string $code) {
-                $locale['url'] = LaravelLocalization::getLocalizedUrl($code, request()?->fullUrl());
+                $locale['currentUrl'] = LaravelLocalization::getLocalizedUrl($code, request()?->fullUrl());
 
                 return $locale;
             });
