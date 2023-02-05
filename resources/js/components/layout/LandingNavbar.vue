@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar bg-base-100 rounded-box shadow-xl">
+    <div class="navbar">
         <div class="navbar-start">
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -19,23 +19,25 @@
 
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><Link :href="$route('public.about')">About</Link></li>
+                <li><Link :href="$route('public.about')" v-text="lang.get('strings.Dashboard')"/></li>
                 <li><Link :href="$route('blog.posts-list')">Blog</Link></li>
             </ul>
         </div>
 
-        <div class="navbar-end">
+        <div class="navbar-end space-x-5">
             <Menu as="div" v-slot="{ close }" class="dropdown dropdown-end">
-                <MenuButton class="btn btn-ghost btn-circle avatar shadow-xl p-1">
-                    <div class="w-full h-full rounded-full">
-                        <!--suppress JSUnresolvedVariable -->
-                        <Component :is="`Flag${$page.props.i18n.currentLocale.toUpperCase()}`" class="h-full"/>
+                <MenuButton class="btn btn-ghost btn-circle avatar shadow-xl p-1 w-9 h-9 min-h-min min-w-min">
+                    <div class="w-full h-full rounded-full relative">
+                        <Transition name="fade">
+                            <!--suppress JSUnresolvedVariable -->
+                            <Component :is="`Flag${$page.props.i18n.currentLocale.toUpperCase()}`" class="absolute h-full -left-1"/>
+                        </Transition>
                     </div>
                 </MenuButton>
 
-                <MenuItems as="ul" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <MenuItem v-for="({ native, url }, code) in $page.props.i18n.locales" as="li" :key="code">
-                        <Link @click="close" :href="url" class="flex items-center space-x-5">
+                <MenuItems as="ul" class="menu menu-compact dropdown-content mt-3 p-2 shadow-xl bg-base-100 rounded-box w-52">
+                    <MenuItem v-for="({ native, currentUrl }, code) in $page.props.i18n.locales" as="li" :key="code">
+                        <Link @click="switchLocale(code, close)" :href="currentUrl" class="flex items-center space-x-5">
                             <Component :is="`Flag${code.toUpperCase()}`" class="w-h h-5"/>
                             <span v-text="native"/>
                         </Link>
@@ -65,9 +67,19 @@ import { FlagRU, FlagEN, FlagLV } from '../flags'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { usePageMixin } from '../../mixins/page'
 import { useRouteMixin } from '../../mixins/route'
+import { useLang } from '../../composables/lang'
 
 export default {
     mixins: [usePageMixin, useRouteMixin],
     components: { Link, Avatar, FlagRU, FlagEN, FlagLV, Menu, MenuButton, MenuItems, MenuItem },
+    computed: {
+        lang: () => useLang(),
+    },
+    methods: {
+        switchLocale(code, closeMenu) {
+            document.documentElement.lang = code
+            closeMenu()
+        },
+    },
 }
 </script>
