@@ -5,6 +5,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@heroicons/vue": "^2.0.14",
         "@inertiajs/vue3": "^1.0.0",
         "@vitejs/plugin-vue": "^4.0.0",
         "@vueuse/core": "^9.11.1",

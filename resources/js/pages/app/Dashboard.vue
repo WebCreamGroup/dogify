@@ -1,163 +1,50 @@
 <template>
-    <div class="space-y-10">
-        <div class="overflow-x-auto w-full">
-            <table class="table w-full">
-                <!-- head -->
-                <thead>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- row 1 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Hart Hagerty</div>
-                                    <div class="text-sm opacity-50">United States</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Zemlak, Daniel and Leannon
-                            <br/>
-                            <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                        </td>
-                        <td>Purple</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <!-- row 2 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Brice Swyre</div>
-                                    <div class="text-sm opacity-50">China</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Carroll Group
-                            <br/>
-                            <span class="badge badge-ghost badge-sm">Tax Accountant</span>
-                        </td>
-                        <td>Red</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <!-- row 3 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Marjy Ferencz</div>
-                                    <div class="text-sm opacity-50">Russia</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Rowe-Schoen
-                            <br/>
-                            <span class="badge badge-ghost badge-sm">Office Assistant I</span>
-                        </td>
-                        <td>Crimson</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                    <!-- row 4 -->
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" class="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">Yancy Tear</div>
-                                    <div class="text-sm opacity-50">Brazil</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Wyman-Ledner
-                            <br/>
-                            <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                        </td>
-                        <td>Indigo</td>
-                        <th>
-                            <button class="btn btn-ghost btn-xs">details</button>
-                        </th>
-                    </tr>
-                </tbody>
-                <!-- foot -->
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
-                        <th></th>
-                    </tr>
-                </tfoot>
+    <main class="space-y-10 h-full">
+        <template v-if="pets.length">
+            <section>
+                Toolbar
+            </section>
 
-            </table>
-        </div>
-    </div>
+            <section v-if="pets.length">
+                <Card v-for="pet in pets">
+                    {{ pet }}
+                </Card>
+            </section>
+        </template>
+        <section v-else class="flex items-center justify-center h-full">
+            <Card class="w-72">
+                <template v-slot:image>
+                    <img src="https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80" alt="empty">
+                </template>
+
+                <template v-slot:title>
+                    <div class="text-center w-full">
+                        {{ $lang.get('strings.You don\'t have dog yet') }}
+                    </div>
+                </template>
+
+                <template v-slot:actions>
+                    <div class="w-full text-center">
+                        <button type="button" class="btn gap-2">
+                            <PlusIcon class="w-6 h-6"/>
+                            Add dog
+                        </button>
+                    </div>
+                </template>
+            </Card>
+        </section>
+    </main>
 </template>
 
 <script>
 import { usePageMixin } from '../../mixins/page'
+import { useLangMixin } from '../../mixins/lang'
+import Card from '../../components/Card.vue'
+import { PlusIcon } from '@heroicons/vue/20/solid'
 
 export default {
-    mixins: [usePageMixin],
+    mixins: [usePageMixin, useLangMixin],
+    components: { Card, PlusIcon },
+    props: ['pets'],
 }
 </script>
