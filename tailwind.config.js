@@ -14,7 +14,7 @@ module.exports = {
     ],
     daisyui: {
         styled: true,
-        themes: ['emerald'],
+        themes: ['dark'],
         base: true,
         utils: true,
         logs: true,

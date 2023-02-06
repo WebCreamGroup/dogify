@@ -1,6 +1,7 @@
 <script setup>
 import { shallowRef, getCurrentInstance } from 'vue'
 import Toast from '../components/layout/Toast.vue'
+import ModalContainer from '../components/modal/Container.vue'
 
 const baseLayout = shallowRef(getCurrentInstance().type)
 </script>
@@ -15,5 +16,6 @@ const baseLayout = shallowRef(getCurrentInstance().type)
         </Component>
     </Transition>
 
+    <ModalContainer/>
     <Toast/>
 </template>
