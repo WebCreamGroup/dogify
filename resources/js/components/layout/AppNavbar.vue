@@ -45,7 +45,7 @@
                     <MenuItem @click="close" as="li">
                         <Link :href="$route('app.profile-view')" class="justify-between">Profile</Link>
                     </MenuItem>
-                    <MenuItem as="li"><a>Settings</a></MenuItem>
+                    <MenuItem as="li"><a @click="openModal">Settings</a></MenuItem>
                     <MenuItem as="li">
                         <form @click="signOut" class="hover:bg-accent/10">
                             <span class="text-accent">Sign out</span>
@@ -60,6 +60,7 @@
 <script>
 import { router, Link } from '@inertiajs/vue3'
 import { useToastStore, TYPE } from '../../stores/toast'
+import { useModal } from '../../stores/modal'
 import Avatar from '../Avatar.vue'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { usePageMixin } from '../../mixins/page'
@@ -73,6 +74,11 @@ export default {
             router.post('/auth/logout', null, {
                 onSuccess: () => useToastStore().push('Successfully signed out', TYPE.SUCCESS)
             })
+        },
+        openModal() {
+            useModal().push(import('../../modals/Test.vue'), { a: 1 })
+            useModal().push(import('../../modals/Test.vue'), { a: 22 })
+            useModal().push(import('../../modals/Test.vue'), { a: 333 })
         },
     },
 }
