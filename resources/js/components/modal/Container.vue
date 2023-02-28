@@ -1,32 +1,39 @@
 <template>
     <Transition name="fade">
-        <div v-if="collection.length" class="modal modal-open overflow-y-auto">
-            <div class="my-auto relative py-10">
-                <Transition name="fade" mode="out-in">
-                    <!--suppress JSValidateTypes -->
-                    <Component @closeModal="closeModal" :is="modalComponent" v-bind="modal.props" :key="modal.id"/>
-                </Transition>
+        <!--suppress JSUnresolvedVariable -->
+        <div v-if="collection.length && modalComponent" class="modal modal-open overflow-y-auto">
+            <div class="my-auto relative py-10 w-full">
+                <div class="container mx-auto">
+                    <Transition name="fade" mode="out-in">
+                        <!--suppress JSValidateTypes -->
+                        <Component @closeModal="closeModal" :is="modalComponent" v-bind="modal.props" :key="modal.id"/>
+                    </Transition>
+                </div>
             </div>
         </div>
     </Transition>
 </template>
 
+<!--suppress JSUnresolvedVariable -->
 <script>
 import { mapState } from 'pinia'
-import { useModal } from '../../stores/modal'
+import { useModalStore } from '../../stores/modal'
 import { last } from 'lodash'
 import { defineAsyncComponent } from 'vue'
 
 // noinspection JSUnusedGlobalSymbols
 export default {
     computed: {
-        ...mapState(useModal, ['collection']),
+        ...mapState(useModalStore, ['collection']),
         modal() {
             return last(this.collection)
         },
         modalComponent() {
-            // noinspection JSUnresolvedVariable
-            return defineAsyncComponent(() => this.modal.component)
+            if (this.modal.component instanceof Promise) {
+                return defineAsyncComponent(() => this.modal.component)
+            }
+
+            return this.modal.component
         },
     },
     watch: {
@@ -43,7 +50,7 @@ export default {
     },
     methods: {
         closeModal() {
-            useModal().removeLast()
+            useModalStore().removeLast()
         },
     },
 }

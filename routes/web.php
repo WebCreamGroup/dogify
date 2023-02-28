@@ -32,5 +32,8 @@ Route::group([
         Route::get('/profile', [Controllers\AppProfileController::class, 'view'])->name('app.profile-view');
         Route::post('/profile/data', [Controllers\AppProfileController::class, 'saveUserData'])->name('app.profile-save-userdata');
         Route::post('/profile/password', [Controllers\AppProfileController::class, 'updateUserPassword'])->name('app.profile-update-password');
+
+        Route::apiResource('breeds', Controllers\ApiBreedController::class)->only('index');
+        Route::apiResource('pets', Controllers\ApiPetController::class)->except('index');
     });
 });

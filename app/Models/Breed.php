@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Enums\AnimalEnum;
+use App\Models\Concerns\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Translatable\HasTranslations;
 
 class Breed extends Model
 {
