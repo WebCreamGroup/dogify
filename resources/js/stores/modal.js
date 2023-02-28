@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid'
 import { defineStore } from 'pinia'
 
-export const useModal = defineStore('modal', {
+export const useModalStore = defineStore('modal', {
     state: () => ({ collection: [] }),
     actions: {
         push(modal, props = {}) {

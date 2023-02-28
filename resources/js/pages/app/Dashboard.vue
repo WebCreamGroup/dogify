@@ -1,13 +1,27 @@
 <template>
     <main class="space-y-10 h-full">
         <template v-if="pets.length">
-            <section>
-                Toolbar
+            <section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <button @click="addDog" :class="{ 'loading': buttonLoadingState.add }" type="button" class="btn gap-2">
+                    <PlusIcon v-if="! buttonLoadingState.add" class="w-6 h-6"/>
+                    Add dog
+                </button>
+
+                <Select v-model="filterByBreed" :options="breeds.map(breed => ({ key: breed.id, value: breed.name }))" placeholder="Breeds" class="sm:w-[300px]" nullable/>
             </section>
 
-            <section v-if="pets.length">
-                <Card v-for="pet in pets">
-                    {{ pet }}
+            <section v-if="pets.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
+                <!--suppress JSUnusedLocalSymbols -->
+                <Card v-for="pet in pets.filter(pet => filterByBreed ? pet.breed_id === filterByBreed : true)">
+                    <template v-slot:title>
+                        <h2 v-html="pet.name"/>
+                    </template>
+
+                    <template v-slot:default>
+                        <!--suppress JSUnresolvedVariable -->
+                        <p v-text="pet.breed.name"/>
+                        <div class="badge badge-ghost" v-text="dayjs(pet.birth_date).format('D MMM YYYY')" />
+                    </template>
                 </Card>
             </section>
         </template>
@@ -25,8 +39,8 @@
 
                 <template v-slot:actions>
                     <div class="w-full text-center">
-                        <button type="button" class="btn gap-2">
-                            <PlusIcon class="w-6 h-6"/>
+                        <button @click="addDog" :class="{ 'loading': buttonLoadingState.add }" type="button" class="btn gap-2">
+                            <PlusIcon v-if="! buttonLoadingState.add" class="w-6 h-6"/>
                             Add dog
                         </button>
                     </div>
@@ -39,12 +53,29 @@
 <script>
 import { usePageMixin } from '../../mixins/page'
 import { useLangMixin } from '../../mixins/lang'
+import Select from '../../components/input/Select.vue'
 import Card from '../../components/Card.vue'
 import { PlusIcon } from '@heroicons/vue/20/solid'
+import { useDogModal } from '../../modals/dogModal'
+import dayjs from 'dayjs'
 
 export default {
     mixins: [usePageMixin, useLangMixin],
-    components: { Card, PlusIcon },
-    props: ['pets'],
+    components: { Card, PlusIcon, Select },
+    props: ['pets', 'breeds'],
+    data: () => ({
+        buttonLoadingState: {},
+        filterByBreed: null,
+    }),
+    computed: {
+        dayjs: () => dayjs,
+    },
+    methods: {
+        async addDog() {
+            this.buttonLoadingState.add = true
+            await useDogModal()
+            delete this.buttonLoadingState.add
+        },
+    },
 }
 </script>

@@ -60,7 +60,7 @@
 <script>
 import { router, Link } from '@inertiajs/vue3'
 import { useToastStore, TYPE } from '../../stores/toast'
-import { useModal } from '../../stores/modal'
+import { useModalStore } from '../../stores/modal'
 import Avatar from '../Avatar.vue'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { usePageMixin } from '../../mixins/page'
@@ -76,9 +76,9 @@ export default {
             })
         },
         openModal() {
-            useModal().push(import('../../modals/Test.vue'), { a: 1 })
-            useModal().push(import('../../modals/Test.vue'), { a: 22 })
-            useModal().push(import('../../modals/Test.vue'), { a: 333 })
+            useModalStore().push(import('../../modals/Test.vue'), { a: 1 })
+            useModalStore().push(import('../../modals/Test.vue'), { a: 22 })
+            useModalStore().push(import('../../modals/Test.vue'), { a: 333 })
         },
     },
 }
