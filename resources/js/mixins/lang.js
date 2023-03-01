@@ -1,4 +1,4 @@
-import { useLang } from '../composables/lang'
+import { useLang } from '@/composables/lang'
 
 // noinspection JSUnusedGlobalSymbols
 export const useLangMixin = {

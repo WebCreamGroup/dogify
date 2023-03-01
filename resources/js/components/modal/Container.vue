@@ -17,7 +17,7 @@
 <!--suppress JSUnresolvedVariable -->
 <script>
 import { mapState } from 'pinia'
-import { useModalStore } from '../../stores/modal'
+import { useModalStore } from '@/stores/modal'
 import { last } from 'lodash'
 import { defineAsyncComponent } from 'vue'
 

@@ -1,5 +1,5 @@
-import { useFetch } from '../composables/fetch'
-import { useModalStore } from '../stores/modal'
+import { useFetch } from '@/composables/fetch'
+import { useModalStore } from '@/stores/modal'
 import { markRaw } from 'vue'
 import Modal from './DogModal.vue'
 import { promiseTimeout } from '@vueuse/core'

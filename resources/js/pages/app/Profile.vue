@@ -101,9 +101,9 @@
 
 <script>
 import { usePage, useForm } from '@inertiajs/vue3'
-import FormErrors from '../../components/FormErrors.vue'
-import { usePageMixin } from '../../mixins/page'
-import { useRouteMixin } from '../../mixins/route'
+import FormErrors from '@/components/FormErrors.vue'
+import { usePageMixin } from '@/mixins/page'
+import { useRouteMixin } from '@/mixins/route'
 
 export default {
     mixins: [usePageMixin, useRouteMixin],

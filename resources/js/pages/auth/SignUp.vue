@@ -67,10 +67,10 @@
 </template>
 
 <script>
-import { useToastStore, TYPE } from '../../stores/toast'
+import { useToastStore, TYPE } from '@/stores/toast'
 import { useForm, Link } from '@inertiajs/vue3'
 import { promiseTimeout } from '@vueuse/core'
-import { useRouteMixin } from '../../mixins/route'
+import { useRouteMixin } from '@/mixins/route'
 
 // noinspection JSUnusedGlobalSymbols
 export default {

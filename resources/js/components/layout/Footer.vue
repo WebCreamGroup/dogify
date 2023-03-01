@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { usePageMixin } from '../../mixins/page'
+import { usePageMixin } from '@/mixins/page'
 
 export default {
     mixins: [usePageMixin],
