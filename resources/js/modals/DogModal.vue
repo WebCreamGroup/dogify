@@ -42,12 +42,11 @@
 </template>
 
 <script>
-import ModalBox from '../components/modal/Box.vue'
-import SelectInput from '../components/input/Select.vue'
-import { useLangMixin } from '../mixins/lang'
-import { useRouteMixin } from '../mixins/route'
-import { useToastStore, TYPE as ToastType } from '../stores/toast'
-import { useModalStore } from '../stores/modal'
+import ModalBox from '@/components/modal/Box.vue'
+import SelectInput from '@/components/input/Select.vue'
+import { useLangMixin, useRouteMixin } from '@/mixins'
+import { useToastStore, TYPE as ToastType } from '@/stores/toast'
+import { useModalStore } from '@/stores/modal'
 import { useForm } from '@inertiajs/vue3'
 import VueTailwindDatepicker from 'vue-tailwind-datepicker'
 import { v4 as uuid } from 'uuid'

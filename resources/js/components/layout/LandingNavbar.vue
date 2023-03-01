@@ -19,7 +19,7 @@
 
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><Link :href="$route('public.about')" v-text="lang.get('strings.Dashboard')"/></li>
+                <li><Link :href="$route('public.about')" v-text="$lang.get('strings.Dashboard')"/></li>
                 <li><Link :href="$route('blog.posts-list')">Blog</Link></li>
             </ul>
         </div>
@@ -62,19 +62,14 @@
 
 <script>
 import { Link } from '@inertiajs/vue3'
-import Avatar from '../Avatar.vue'
-import { FlagRU, FlagEN, FlagLV } from '../flags'
+import Avatar from '@/components/Avatar.vue'
+import { FlagRU, FlagEN, FlagLV } from '@/components/flags'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { usePageMixin } from '../../mixins/page'
-import { useRouteMixin } from '../../mixins/route'
-import { useLang } from '../../composables/lang'
+import { usePageMixin, useRouteMixin, useLangMixin } from '@/mixins'
 
 export default {
-    mixins: [usePageMixin, useRouteMixin],
+    mixins: [usePageMixin, useRouteMixin, useLangMixin],
     components: { Link, Avatar, FlagRU, FlagEN, FlagLV, Menu, MenuButton, MenuItems, MenuItem },
-    computed: {
-        lang: () => useLang(),
-    },
     methods: {
         switchLocale(code, closeMenu) {
             document.documentElement.lang = code

@@ -59,12 +59,12 @@
 
 <script>
 import { router, Link } from '@inertiajs/vue3'
-import { useToastStore, TYPE } from '../../stores/toast'
-import { useModalStore } from '../../stores/modal'
-import Avatar from '../Avatar.vue'
+import { useToastStore, TYPE } from '@/stores/toast'
+import { useModalStore } from '@/stores/modal'
+import Avatar from '@/components/Avatar.vue'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { usePageMixin } from '../../mixins/page'
-import { useRouteMixin } from '../../mixins/route'
+import { usePageMixin } from '@/mixins/page'
+import { useRouteMixin } from '@/mixins/route'
 
 export default {
     mixins: [usePageMixin, useRouteMixin],
@@ -76,9 +76,9 @@ export default {
             })
         },
         openModal() {
-            useModalStore().push(import('../../modals/Test.vue'), { a: 1 })
-            useModalStore().push(import('../../modals/Test.vue'), { a: 22 })
-            useModalStore().push(import('../../modals/Test.vue'), { a: 333 })
+            useModalStore().push(import('@/modals/Test.vue'), { a: 1 })
+            useModalStore().push(import('@/modals/Test.vue'), { a: 22 })
+            useModalStore().push(import('@/modals/Test.vue'), { a: 333 })
         },
     },
 }

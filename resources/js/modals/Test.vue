@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ModalBox from '../components/modal/Box.vue'
+import ModalBox from '@/components/modal/Box.vue'
 
 export default {
     components: { ModalBox },

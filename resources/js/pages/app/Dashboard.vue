@@ -51,12 +51,11 @@
 </template>
 
 <script>
-import { usePageMixin } from '../../mixins/page'
-import { useLangMixin } from '../../mixins/lang'
-import Select from '../../components/input/Select.vue'
-import Card from '../../components/Card.vue'
+import { usePageMixin, useLangMixin } from '@/mixins'
+import Select from '@/components/input/Select.vue'
+import Card from '@/components/Card.vue'
 import { PlusIcon } from '@heroicons/vue/20/solid'
-import { useDogModal } from '../../modals/dogModal'
+import { useDogModal } from '@/modals/dogModal'
 import dayjs from 'dayjs'
 
 export default {
