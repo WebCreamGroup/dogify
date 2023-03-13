@@ -2,9 +2,9 @@
     <main class="space-y-10 h-full">
         <template v-if="pets.length">
             <section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <button @click="addDog" :class="{ 'loading': buttonLoadingState.add }" type="button" class="btn gap-2">
-                    <PlusIcon v-if="! buttonLoadingState.add" class="w-6 h-6"/>
-                    Add dog
+                <button @click="addDogModal.open()" :class="{ 'loading': addDogModal.loading }" type="button" class="btn gap-2">
+                    <PlusIcon v-if="! addDogModal.loading" class="w-6 h-6"/>
+                    <span>Add dog</span>
                 </button>
 
                 <Select v-model="filterByBreed" :options="breeds.map(breed => ({ key: breed.id, value: breed.name }))" placeholder="Breeds" class="sm:w-[300px]" nullable/>
@@ -39,9 +39,9 @@
 
                 <template v-slot:actions>
                     <div class="w-full text-center">
-                        <button @click="addDog" :class="{ 'loading': buttonLoadingState.add }" type="button" class="btn gap-2">
-                            <PlusIcon v-if="! buttonLoadingState.add" class="w-6 h-6"/>
-                            Add dog
+                        <button @click="addDogModal.open()" :class="{ 'loading': addDogModal.loading }" type="button" class="btn gap-2">
+                            <PlusIcon v-if="! addDogModal.loading" class="w-6 h-6"/>
+                            <span>Add dog</span>
                         </button>
                     </div>
                 </template>
@@ -55,7 +55,8 @@ import { usePageMixin, useLangMixin } from '@/mixins'
 import Select from '@/components/input/Select.vue'
 import Card from '@/components/Card.vue'
 import { PlusIcon } from '@heroicons/vue/20/solid'
-import { useDogModal } from '@/modals/dogModal'
+import { useModalStore } from '@/stores/modal'
+import { useRoute } from '@/composables/route'
 import dayjs from 'dayjs'
 
 export default {
@@ -63,18 +64,11 @@ export default {
     components: { Card, PlusIcon, Select },
     props: ['pets', 'breeds'],
     data: () => ({
-        buttonLoadingState: {},
         filterByBreed: null,
     }),
     computed: {
         dayjs: () => dayjs,
-    },
-    methods: {
-        async addDog() {
-            this.buttonLoadingState.add = true
-            await useDogModal()
-            delete this.buttonLoadingState.add
-        },
+        addDogModal: () => useModalStore().byRoute(useRoute('pets.create')),
     },
 }
 </script>

@@ -26,13 +26,16 @@ class ApiPetController extends Controller
 
     public function show(Pet $pet)
     {
+        dd($pet);
     }
 
     public function update(Request $request, Pet $pet)
     {
+        dd($pet);
     }
 
     public function destroy(Pet $pet)
     {
+        dd($pet);
     }
 }
