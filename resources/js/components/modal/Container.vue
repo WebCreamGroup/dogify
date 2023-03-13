@@ -1,12 +1,10 @@
 <template>
     <Transition name="fade">
-        <!--suppress JSUnresolvedVariable -->
-        <div v-if="collection.length && modalComponent" class="modal modal-open overflow-y-auto">
+        <div v-if="preparedCollection.length && modalComponent" @click="containerClick" class="modal modal-open overflow-y-auto">
             <div class="my-auto relative py-10 w-full">
                 <div class="container mx-auto">
                     <Transition name="fade" mode="out-in">
-                        <!--suppress JSValidateTypes -->
-                        <Component @closeModal="closeModal" :is="modalComponent" v-bind="modal.props" :key="modal.id"/>
+                        <Component @click.stop @init="boxInit" @close="boxClose" :is="modalComponent" v-bind="modal.props" :key="modal.id"/>
                     </Transition>
                 </div>
             </div>
@@ -14,7 +12,6 @@
     </Transition>
 </template>
 
-<!--suppress JSUnresolvedVariable -->
 <script>
 import { mapState } from 'pinia'
 import { useModalStore } from '@/stores/modal'
@@ -23,10 +20,13 @@ import { defineAsyncComponent } from 'vue'
 
 // noinspection JSUnusedGlobalSymbols
 export default {
+    data: () => ({
+        allowContainerClose: null,
+    }),
     computed: {
-        ...mapState(useModalStore, ['collection']),
+        ...mapState(useModalStore, ['preparedCollection']),
         modal() {
-            return last(this.collection)
+            return last(this.preparedCollection)
         },
         modalComponent() {
             if (this.modal.component instanceof Promise) {
@@ -37,7 +37,7 @@ export default {
         },
     },
     watch: {
-        collection: {
+        preparedCollection: {
             deep: true,
             handler({ length }) {
                 if (length) {
@@ -49,9 +49,17 @@ export default {
         },
     },
     methods: {
-        closeModal() {
-            useModalStore().removeLast()
+        boxInit({ allowContainerClose }) {
+            this.allowContainerClose = allowContainerClose
         },
+        boxClose() {
+            useModalStore().close()
+        },
+        containerClick() {
+            if (this.allowContainerClose) {
+                this.boxClose()
+            }
+        }
     },
 }
 </script>

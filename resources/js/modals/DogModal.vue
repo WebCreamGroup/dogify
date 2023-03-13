@@ -36,11 +36,12 @@
 
         <template v-slot:actions>
             <button :class="{ 'loading': form.processing }" :form="formId" type="submit" class="btn btn-primary">Save</button>
-            <button @click="$emit('closeModal')" type="button" class="btn btn-accent">Cancel</button>
+            <button @click="$emit('close')" type="button" class="btn btn-accent">Cancel</button>
         </template>
     </ModalBox>
 </template>
 
+<!--suppress JSUnusedGlobalSymbols -->
 <script>
 import ModalBox from '@/components/modal/Box.vue'
 import SelectInput from '@/components/input/Select.vue'
@@ -52,7 +53,6 @@ import VueTailwindDatepicker from 'vue-tailwind-datepicker'
 import { v4 as uuid } from 'uuid'
 import { promiseTimeout } from '@vueuse/core'
 
-// noinspection SpellCheckingInspection,JSUnresolvedVariable
 export default {
     mixins: [useLangMixin, useRouteMixin],
     components: {
@@ -88,7 +88,7 @@ export default {
             // noinspection JSUnresolvedVariable
             this.form.post(this.$route('pets.store'), {
                 onSuccess: () => {
-                    useModalStore().removeLast()
+                    useModalStore().close()
                     useToastStore().push('Pet added', ToastType.SUCCESS)
                 }
             })

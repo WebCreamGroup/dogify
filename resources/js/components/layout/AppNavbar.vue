@@ -76,9 +76,9 @@ export default {
             })
         },
         openModal() {
-            useModalStore().push(import('@/modals/Test.vue'), { a: 1 })
-            useModalStore().push(import('@/modals/Test.vue'), { a: 22 })
-            useModalStore().push(import('@/modals/Test.vue'), { a: 333 })
+            useModalStore().open(import('@/modals/Test.vue'), { a: 1 })
+            useModalStore().open(import('@/modals/Test.vue'), { a: 22 })
+            useModalStore().open(import('@/modals/Test.vue'), { a: 333 })
         },
     },
 }
